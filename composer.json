@@ -1,16 +1,20 @@
 {
 	"config": {
-		"vendor-dir": "core/lib"
+		"vendor-dir": "core/vendor"
 	},
 	"autoload": {
 		"psr-0": {
-			"": "core/lib/"
+			"PatternLab": "core/src/",
+			"": "source/_plugins/"
 		}
 	},
 	"require": {
 		"alchemy/zippy": "0.2.0",
 		"michelf/php-markdown": "1.4",
 		"symfony/yaml": "2.4.4",
-		"scan/kss-php": "v0.6.0"
+		"scan/kss-php": "v0.6.0",
+		"wrench/wrench": "dev-master",
+		"seld/jsonlint": "1.1.2",
+		"mustache/mustache": "v2.6.0"
 	}
 }
