@@ -1,6 +1,7 @@
 .DS_Store
 public/*
 source/*
+plugins/*
 config.ini
 latest-change.txt
 *-ck.js
