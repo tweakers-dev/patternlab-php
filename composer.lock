@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b73ea02af4d3a5f3de6a031c65ed81ed",
+    "hash": "413260ce211cdeb12797ee5dae4973d2",
     "packages": [
         {
             "name": "alchemy/zippy",
