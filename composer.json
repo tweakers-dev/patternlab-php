@@ -14,6 +14,7 @@
 		"wrench/wrench": "dev-master",
 		"seld/jsonlint": "1.1.2",
 		"mustache/mustache": "v2.6.0",
-		"symfony/event-dispatcher": "v2.5.0"
+		"symfony/event-dispatcher": "v2.5.0",
+		"symfony/filesystem": "v2.5.0"
 	}
 }
