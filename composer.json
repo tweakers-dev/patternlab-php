@@ -1,5 +1,5 @@
 {
-	"name":             "PatternLab/Base",
+	"name":             "pattern-lab/pattern-lab",
 	"description":      "The basic composer file to hold info to manage installation of extensions. Not tracked in Packagist.",
 	"version":          "0.7.12",
 	"keywords":         ["pattern lab"],
@@ -25,14 +25,20 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"PatternLab":   "core/src/",
-			""          :   "core/vendor/"
+			"PatternLab":   "core/src/"
 		}
 	},
 	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.3.6",
-		"pattern-lab/unified-asset-installer": "dev-master"
+		"pattern-lab/unified-asset-installer": "dev-master",
+		"michelf/php-markdown": "1.4",
+		"symfony/yaml": "2.4.4",
+		"wrench/wrench": "dev-master",
+		"seld/jsonlint": "1.1.2",
+		"mustache/mustache": "v2.6.0",
+		"symfony/event-dispatcher": "v2.5.0",
+		"symfony/filesystem": "v2.5.0"
 	},
 	"scripts": {
 		"pre-install-cmd": [
