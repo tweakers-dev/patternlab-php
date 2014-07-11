@@ -1,8 +1,8 @@
 {
-	"name":             "pattern-lab/pattern-lab",
-	"description":      "The basic composer file to hold info to manage installation of extensions. Not tracked in Packagist.",
+	"name":             "PatternLab/Core",
+	"description":      "The core files used for Pattern Lab. Not tracked in Packagist.",
 	"version":          "0.7.12",
-	"keywords":         ["pattern lab"],
+	"keywords":         ["twig", "pattern lab", "pattern engine"],
 	"homepage":         "http://patternlab.io",
 	"license":          "MIT",
 	"authors": [
@@ -25,27 +25,14 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"PatternLab":   "core/src/"
+			"PatternLab":   "src/"
 		}
 	},
 	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.3.6",
-		"pattern-lab/unified-asset-installer": "dev-master",
-		"michelf/php-markdown": "1.4",
-		"symfony/yaml": "2.4.4",
-		"wrench/wrench": "dev-master",
-		"seld/jsonlint": "1.1.2",
-		"mustache/mustache": "v2.6.0",
-		"symfony/event-dispatcher": "v2.5.0",
-		"symfony/filesystem": "v2.5.0"
-	},
-	"scripts": {
-		"pre-install-cmd": [
-			"PatternLab\\Installer::preInstallCmd"
-		],
-		"post-package-install": [
-			"PatternLab\\Installer::postPackageInstall"
-		]
+		"alchemy/zippy": "0.2.0",
+		
+		"composer/installers": "~1.0"
 	}
 }

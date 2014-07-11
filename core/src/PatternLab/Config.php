@@ -12,22 +12,30 @@
 
 namespace PatternLab;
 
+use \PatternLab\FileUtil;
+
 class Config {
 	
 	public    static $options        = array();
 	protected static $userConfigPath = "/../../../config/config.ini";
 	protected static $plConfigPath   = "/../../config/config.ini.default";
 	protected static $cleanValues    = array("ie","id","patternStates","styleGuideExcludes");
+	protected static $dirAdded       = false;
 	
 	/**
 	* Adds the config options to a var to be accessed from the rest of the system
 	* If it's an old config or no config exists this will update and generate it.
+	* @param  {Boolean}       whether we should print out the status of the config being loaded
 	*/
-	public static function init() {
+	public static function init($verbose = true) {
 		
 		// can't add __DIR__ above so adding here
-		self::$userConfigPath = __DIR__.self::$userConfigPath;
-		self::$plConfigPath   = __DIR__.self::$plConfigPath;
+		if (!self::$dirAdded) {
+			self::$userConfigPath = FileUtil::normalizePath(__DIR__.self::$userConfigPath);
+			self::$plConfigPath   = FileUtil::normalizePath(__DIR__.self::$plConfigPath);
+			self::$dirAdded       = true;
+		}
+		
 		
 		// make sure migrate doesn't happen by default
 		$migrate     = false;
@@ -43,7 +51,10 @@ class Config {
 		$defaultOptions = self::$options = parse_ini_file(self::$plConfigPath);
 		
 		// check to see if the user config exists, if not create it
-		print "configuring pattern lab...\n";
+		if ($verbose) {
+			print "configuring pattern lab...\n";
+		}
+		
 		if (!file_exists(self::$userConfigPath)) {
 			$migrate = true;
 		} else {
@@ -55,8 +66,10 @@ class Config {
 		
 		// run an upgrade and migrations if necessary
 		if ($migrate || $diffVersion) {
-			print "upgrading your version of pattern lab...\n";
-			print "checking for migrations...\n";
+			if ($verbose) {
+				print "upgrading your version of pattern lab...\n";
+				print "checking for migrations...\n";
+			}
 			$m = new Migrator;
 			$m->migrate(true);
 			if ($migrate) {
@@ -70,19 +83,17 @@ class Config {
 		}
 		
 		// making sure the config isn't empty
-		if (empty(self::$options)) {
+		if (empty(self::$options) && $verbose) {
 			print "A set of configuration options is required to use Pattern Lab.\n";
 			exit;
 		}
 		
-		// set-up the source & public dirs
-		self::$options["sourceDir"]        = rtrim(self::$options["sourceDir"],"\\");
-		self::$options["publicDir"]        = rtrim(self::$options["publicDir"],"\\");
-		self::$options["patternSourceDir"] = "/../../../".self::$options["sourceDir"]."/_patterns".DIRECTORY_SEPARATOR;
-		self::$options["patternPublicDir"] = "/../../../".self::$options["publicDir"]."/patterns".DIRECTORY_SEPARATOR;
-		self::$options["sourceDir"]        = __DIR__."/../../../".self::$options["sourceDir"];
-		self::$options["publicDir"]        = __DIR__."/../../../".self::$options["publicDir"];
-		self::$options["pluginDir"]        = __DIR__."/../../../".self::$options["pluginDir"];
+		// set-up the various dirs
+		self::$options["sourceDir"]        = self::cleanDir(self::$options["sourceDir"]);
+		self::$options["publicDir"]        = self::cleanDir(self::$options["publicDir"]);
+		self::$options["pluginDir"]        = self::cleanDir(self::$options["pluginDir"]);
+		self::$options["patternSourceDir"] = self::$options["sourceDir"]."/_patterns";
+		self::$options["patternPublicDir"] = self::$options["publicDir"]."/patterns";
 		
 		// populate some standard variables out of the config
 		foreach (self::$options as $key => $value) {
@@ -125,6 +136,22 @@ class Config {
 		
 		// provide the default for enable CSS. performance hog so it should be run infrequently
 		self::$options["enableCSS"] = false;
+		
+	}
+	
+	/**
+	* Clean a given dir from the config file
+	* @param  {String}       directory to be cleaned
+	*
+	* @return {String}       cleaned directory
+	*/
+	protected static function cleanDir($dir) {
+		
+		$dir = trim($dir);
+		$dir = ($dir[strlen($dir)-1] == DIRECTORY_SEPARATOR) ? rtrim($dir, DIRECTORY_SEPARATOR) : $dir;
+		$dir = FileUtil::normalizePath(__DIR__."/../../../".$dir);
+		
+		return $dir;
 		
 	}
 	

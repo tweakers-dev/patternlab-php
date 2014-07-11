@@ -6,3 +6,5 @@ config.ini
 latest-change.txt
 *-ck.js
 *.sass-cache/
+vendor/*
+composer.lock

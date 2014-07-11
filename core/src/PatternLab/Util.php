@@ -22,9 +22,9 @@ class Util {
 	public static function cleanPublic() {
 		
 		// make sure patterns exists before trying to clean it
-		if (is_dir(__DIR__.Config::$options["patternPublicDir"])) {
+		if (is_dir(Config::$options["patternPublicDir"])) {
 			
-			$objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(__DIR__.Config::$options["patternPublicDir"]), \RecursiveIteratorIterator::CHILD_FIRST);
+			$objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(Config::$options["patternPublicDir"]), \RecursiveIteratorIterator::CHILD_FIRST);
 			
 			// make sure dots are skipped
 			$objects->setFlags(\FilesystemIterator::SKIP_DOTS);
@@ -45,23 +45,25 @@ class Util {
 		}
 		
 		// scan source/ & public/ to figure out what directories might need to be cleaned up
+		$publicDir  = Config::$options["publicDir"];
+		$sourceDir  = Config::$options["sourceDir"];
+		$publicDirs = glob($publicDir."/*",GLOB_ONLYDIR);
 		$sourceDirs = glob(Config::$options["sourceDir"]."/*",GLOB_ONLYDIR);
-		$publicDirs = glob(Config::$options["publicDir"]."/*",GLOB_ONLYDIR);
 		
 		// make sure some directories aren't deleted
 		$ignoreDirs = array("styleguide","snapshots");
 		foreach ($ignoreDirs as $ignoreDir) {
-			$key = array_search(Config::$options["publicDir"]."/".$ignoreDir,$publicDirs);
+			$key = array_search($publicDir."/".$ignoreDir,$publicDirs);
 			if ($key !== false){
 				unset($publicDirs[$key]);
 			}
 		}
 		
 		// compare source dirs against public. remove those dirs w/ an underscore in source/ from the public/ list
-		foreach ($sourceDirs as $sourceDir) {
-			$cleanDir = str_replace(Config::$options["sourceDir"]."/","",$sourceDir);
+		foreach ($sourceDirs as $dir) {
+			$cleanDir = str_replace($sourceDir."/","",$dir);
 			if ($cleanDir[0] == "_") {
-				$key = array_search(Config::$options["publicDir"]."/".str_replace("_","",$cleanDir),$publicDirs);
+				$key = array_search($publicDir."/".str_replace("_","",$cleanDir),$publicDirs);
 				if ($key !== false){
 					unset($publicDirs[$key]);
 				}
