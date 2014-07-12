@@ -17,7 +17,7 @@ use \PatternLab\Data;
 use \PatternLab\PatternData;
 use \PatternLab\PatternEngine;
 use \PatternLab\Render;
-use \PatternLab\Template\Helper;
+use \PatternLab\Template;
 
 class PatternCodeHelper extends \PatternLab\PatternData\Helper {
 	
@@ -35,9 +35,13 @@ class PatternCodeHelper extends \PatternLab\PatternData\Helper {
 		$options                 = array();
 		$options["patternPaths"] = $this->patternPaths;
 		$patternExtension        = Config::$options["patternExtension"];
+		$htmlHead                = Template::$htmlHead;
+		$htmlFoot                = Template::$htmlFoot;
+		$patternHead             = Template::$patternHead;
+		$patternFoot             = Template::$patternFoot;
 		
-		// set-up the pattern engine
-		PatternEngine::init($options);
+		// load the pattern loader
+		Template::$patternLoader = PatternEngine::$instance->getPatternLoader($options);
 		
 		foreach (PatternData::$store as $patternStoreKey => $patternStoreData) {
 			
@@ -62,15 +66,15 @@ class PatternCodeHelper extends \PatternLab\PatternData\Helper {
 				$patternData["patternDescAdditions"] = isset($patternStoreData["codeViewDescAdditions"]) ? $patternStoreData["codeViewDescAdditions"] : array();
 				
 				// add the pattern lab specific mark-up
-				$data["patternLabHead"]           = Render::Header(Helper::$htmlHead,array("cacheBuster" => $data["cacheBuster"]));
-				$data["patternLabFoot"]           = Render::Footer(Helper::$htmlFoot,array("cacheBuster" => $data["cacheBuster"], "patternData" => json_encode($patternData)));
+				$data["patternLabHead"]           = Render::Header($htmlHead,array("cacheBuster" => $data["cacheBuster"]));
+				$data["patternLabFoot"]           = Render::Footer($htmlFoot,array("cacheBuster" => $data["cacheBuster"], "patternData" => json_encode($patternData)));
 				
 				// figure out the source path for the pattern to render
 				$srcPath = (isset($patternStoreData["pseudo"])) ? PatternData::$store[$patternStoreData["original"]]["pathName"] : $patternStoreData["pathName"];
 				
-				$header  = Render::Header(Helper::$patternHead,$data);
+				$header  = Render::Header($patternHead,$data);
 				$code    = Render::Pattern($srcPath,$data);
-				$footer  = Render::Footer(Helper::$patternFoot,$data);
+				$footer  = Render::Footer($patternFoot,$data);
 				
 				PatternData::$store[$patternStoreKey]["header"] = $header;
 				PatternData::$store[$patternStoreKey]["code"]   = $code;
