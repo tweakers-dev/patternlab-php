@@ -38,7 +38,10 @@
 		"seld/jsonlint": "1.1.2",
 		"mustache/mustache": "v2.6.0",
 		"symfony/event-dispatcher": "v2.5.0",
-		"symfony/filesystem": "v2.5.0"
+		"symfony/filesystem": "v2.5.0",
+		"pattern-lab/patternengine-php-mustache": "dev-master",
+		"pattern-lab/starterkit-mustache-demo": "dev-master",
+		"kevinlebrun/colors.php": "0.*"
 	},
 	"scripts": {
 		"pre-install-cmd": [
