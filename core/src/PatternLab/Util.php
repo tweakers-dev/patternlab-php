@@ -13,6 +13,7 @@
 namespace PatternLab;
 
 use \PatternLab\Config;
+use \PatternLab\Console;
 
 class Util {
 	
@@ -137,10 +138,10 @@ class Util {
 	*/
 	public static function updateChangeTime() {
 		
-		if (is_dir(Config::$options["publicDir"]."/")) {
+		if (is_dir(Config::$options["publicDir"])) {
 			file_put_contents(Config::$options["publicDir"]."/latest-change.txt",time());
 		} else {
-			print "Either the public directory for Pattern Lab doesn't exist or the builder is in the wrong location. Please fix.";
+			Console::writeLine("<error>the public directory for Pattern Lab doesn't exist...</error>");
 			exit;
 		}
 		

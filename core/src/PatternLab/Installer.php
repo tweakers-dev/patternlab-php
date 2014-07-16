@@ -14,6 +14,7 @@ namespace PatternLab;
 
 use \Composer\Script\Event;
 use \PatternLab\Config;
+use \PatternLab\Console;
 use \Symfony\Component\Filesystem\Filesystem;
 use \Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
@@ -47,6 +48,9 @@ class Installer {
 	public static function postPackageInstall(Event $event) {
 		
 		if (class_exists("\PatternLab\Config")) {
+			
+			// initialize the console to print out any issues
+			Console::init();
 			
 			// initialize the config for the pluginDir
 			$baseDir = __DIR__."/../../../";
@@ -119,8 +123,8 @@ class Installer {
 		foreach ($fileList as $fileItem) {
 			
 			// retrieve the source & destination
-			$source      = key($fileItem);
-			$destination = $fileItem[$source];
+			$source      = self::removeDots(key($fileItem));
+			$destination = self::removeDots($fileItem[$source]);
 			
 			// depending on the source handle things differently. mirror if it ends in /*
 			if (($source == "*") && ($destination == "*")) {
@@ -144,6 +148,22 @@ class Installer {
 			
 		}
 		
+	}
+	
+	/**
+	 * Remove dots from the path to make sure there is no file system traversal when looking for or writing files
+	 * @param  {String}    the path to check and remove dots
+	 *
+	 * @return {String}    the path minus dots
+	 */
+	protected static function removeDots($path) {
+		$parts = array();
+		foreach (explode("/", $path) as $chunk) {
+			if ((".." !== $chunk) && ("." !== $chunk) && ("" !== $chunk)) {
+				$parts[] = $chunk;
+			}
+		}
+		return implode("/", $parts);
 	}
 	
 }
