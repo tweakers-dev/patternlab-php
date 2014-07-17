@@ -49,6 +49,9 @@
 		],
 		"post-package-install": [
 			"PatternLab\\Installer::postPackageInstall"
+		],
+		"post-package-update": [
+			"PatternLab\\Installer::postPackageUpdate"
 		]
 	}
 }
