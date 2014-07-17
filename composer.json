@@ -34,7 +34,6 @@
 		"pattern-lab/unified-asset-installer": "dev-master",
 		"michelf/php-markdown": "1.4",
 		"symfony/yaml": "2.4.4",
-		"wrench/wrench": "dev-master",
 		"seld/jsonlint": "1.1.2",
 		"mustache/mustache": "v2.6.0",
 		"symfony/event-dispatcher": "v2.5.0",
