@@ -35,12 +35,11 @@
 		"michelf/php-markdown": "1.4",
 		"symfony/yaml": "2.4.4",
 		"seld/jsonlint": "1.1.2",
-		"mustache/mustache": "v2.6.0",
 		"symfony/event-dispatcher": "v2.5.0",
 		"symfony/filesystem": "v2.5.0",
+		"kevinlebrun/colors.php": "0.*",
 		"pattern-lab/patternengine-php-mustache": "dev-master",
-		"pattern-lab/starterkit-mustache-demo": "dev-master",
-		"kevinlebrun/colors.php": "0.*"
+		"pattern-lab/starterkit-mustache-demo": "dev-master"
 	},
 	"scripts": {
 		"pre-install-cmd": [
