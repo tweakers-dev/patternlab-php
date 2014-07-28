@@ -1,10 +1,6 @@
 .DS_Store
-public/*
-source/*
-packages/*
-config.ini
-latest-change.txt
 *-ck.js
 *.sass-cache/
+export/*
+public/*
 vendor/*
-composer.lock
