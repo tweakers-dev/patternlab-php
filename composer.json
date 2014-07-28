@@ -1,10 +1,10 @@
 {
 	"name":             "pattern-lab/pattern-lab",
-	"description":      "The basic composer file to hold info to manage installation of extensions. Not tracked in Packagist.",
-	"version":          "0.7.12",
+	"description":      "The standard edition of Pattern Lab. Uses Mustache as the template engine.",
 	"keywords":         ["pattern lab"],
 	"homepage":         "http://patternlab.io",
 	"license":          "MIT",
+	"type":             "project",
 	"authors": [
 		{
 			"name":         "Dave Olsen",
@@ -29,17 +29,18 @@
 		}
 	},
 	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"require": {
 		"php": ">=5.3.6",
-		"pattern-lab/unified-asset-installer": "dev-master",
-		"michelf/php-markdown": "1.4",
-		"symfony/yaml": "2.4.4",
-		"seld/jsonlint": "1.1.2",
-		"symfony/event-dispatcher": "v2.5.0",
-		"symfony/filesystem": "v2.5.0",
-		"kevinlebrun/colors.php": "0.*",
-		"pattern-lab/patternengine-php-mustache": "dev-master",
-		"pattern-lab/starterkit-mustache-demo": "dev-master"
+		"pattern-lab/core": "dev-dev",
+		"pattern-lab/patternengine-php-mustache": "dev-dev",
+		"pattern-lab/styleguidekit-mustache-default": "dev-dev",
+		"pattern-lab/starterkit-mustache-demo": "dev-dev"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "dev-dev"
+		}
 	},
 	"scripts": {
 		"pre-install-cmd": [
