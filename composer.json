@@ -37,11 +37,6 @@
 		"pattern-lab/styleguidekit-mustache-default": "dev-dev",
 		"pattern-lab/starterkit-mustache-demo": "dev-dev"
 	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "dev-dev"
-		}
-	},
 	"scripts": {
 		"pre-install-cmd": [
 			"PatternLab\\Installer::preInstallCmd"
