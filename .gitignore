@@ -3,5 +3,6 @@ public/*
 source/*
 config.ini
 latest-change.txt
+.idea
 *-ck.js
 *.sass-cache/
