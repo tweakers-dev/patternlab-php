@@ -3,6 +3,20 @@
 \*------------------------------------*/
 
 //Colors
+$tweakers_brand : #a61e39;
+$tweakers_highlight : #d9ff26;
+$tweakers_link : #014c93;
+$tweakers_shade_dark : #313232;
+$tweakers_shade_medium : #8d8b88;
+$tweakers_shade_light : #b7b4b2;
+$tweakers_border_dark : #bcbdbd;
+$tweakers_border_medium : #dddede;
+$tweakers_border_light : #e8eaea;
+$tweakers_block_box : #edeeee;
+
+$tweakers_black : #010101;
+$tweakers_white : #fefefe;
+
 $gray : #808080;
 $gray-light : #f9f9f9;
 $gray-light-2 : #eee;
@@ -29,15 +43,19 @@ $information : #000db5;
 $font : Arial, Helvetica, "Liberation Sans", sans-serif;
 $font-secondary : "Roboto Condensed", Arial, Helvetica,"Liberation Sans", sans-serif;
 
-$font-size-small : 0.75em;
-$font-size-small-2 : 0.875em;
-$font-size-med : 1em;
-$font-size-med-2: 1.0625em;
-$font-size-large : 1.4375em;
-
+$font-size-small : 10px;
+$font-size-small-2 : 11px;
+$font-size-med : 12px;
+$font-size-med-2: 13px;
+$font-size-large : 14px;
+$font-size-large-2 : 15px;
+$font-size-extra-large : 16px;
+$font-size-extra-large-2 : 17px;
+$font-size-heading : 19px;
+$font-size-heading-2 : 27px;
 
 //Layout
-$max-width: 72em;
+$max-width: 980px;
 
 //Defaults
 $space : 1em;

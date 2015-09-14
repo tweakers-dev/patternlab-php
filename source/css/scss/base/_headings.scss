@@ -1,15 +1,29 @@
 /* Headings */
 /*Further Reading: http:/csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/ */
-h1, .alpha   { 
-	line-height: 1.2;
+h1, .alpha   {
+  line-height: 33px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  color: $tweakers_brand;
+  font-family: $font-secondary;
+  font-size: $font-size-heading-2;
 }
 
-h2, .beta    { 
-	line-height: 1.2;
+h2, .beta    {
+  line-height: 33px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  color: $tweakers_brand;
+  font-family: $font-secondary;
+  font-size: $font-size-heading;
 }
 
-h3, .gamma   { 
-	line-height: 1.2;
+h3, .gamma   {
+  line-height: 33px;
+  font-weight: 400;
+  color: $tweakers_black;
+  font-family: $font-secondary;
+  font-size: $font-size-extra-large;
 }
 
 h4, .delta   {
