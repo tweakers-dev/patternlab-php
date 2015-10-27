@@ -29,6 +29,16 @@ var comments = {
 		"el": ".block-hero",
 		"title" : "Hero",
 		"comment": "<p>The hero area highlights one major story using a large image and a captivating headline.</p>"
+	},
+	{
+		"el": "h1",
+		"title": "Heading 1",
+		"comment": "<p>Dit is een test.</p>"
+	},
+	{
+		"el": "h2",
+		"title": "Heading 2",
+		"comment": "<p>Dit is nog een test.</p>"
 	}
 ]
 };
